@@ -1,10 +1,5 @@
-/* eslint-disable nuxt/no-globals-in-created */
 <template>
-  <div
-    :class="{ 'header--unpinned': scrolled }"
-    class="nav-bar pinned-bar"
-    @scroll="handleScroll"
-  >
+  <div class="nav-bar">
     <nuxt-link to="/" class="label">
       <img src="~/assets/images/logo.png" alt="label" />
       <span>
@@ -69,25 +64,13 @@ export default {
   data() {
     return {
       navOpen: false,
-      langs: ['ua', 'ru', 'en'],
-      headerLimitPosition: 70,
-      scrolled: false,
-      headerLastPosition: 0
+      langs: ['ua', 'ru', 'en']
     }
   },
   watch: {
     $route() {
       this.navOpen = false
     }
-  },
-  created() {
-    if (process.browser) {
-      // eslint-disable-next-line nuxt/no-globals-in-created
-      window.addEventListener('scroll', this.handleScroll)
-    }
-  },
-  destroyed() {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     updateRoute(locale) {
@@ -97,24 +80,6 @@ export default {
     },
     openNav() {
       this.navOpen = !this.navOpen
-      this.headerLimitPosition = undefined
-      if (this.navOpen) {
-        console.log(this.headerLimitPosition)
-      } else {
-        this.headerLimitPosition = 100
-      }
-    },
-    handleScroll() {
-      if (
-        this.headerLastPosition < window.scrollY &&
-        this.headerLimitPosition < window.scrollY
-      ) {
-        this.scrolled = true
-      }
-      if (this.headerLastPosition > window.scrollY) {
-        this.scrolled = false
-      }
-      this.headerLastPosition = window.scrollY
     }
   }
 }
@@ -125,15 +90,6 @@ export default {
 @import "~/assets/sass/_fonts.sass"
 @import "~/assets/sass/_typography.sass"
 @import "~/assets/sass/_color.sass"
-.activenavlink
-  color: #ff3333 !important
-.pinned-bar
-  will-change: transform
-  transition: transform 250ms ease-in-out
-.header--pinned
-  transform: translateY(0%)
-.header--unpinned
-  transform: translateY(-100%)
 .full-screen
   position: fixed
   width: 100%
@@ -141,13 +97,12 @@ export default {
   background: #fafafa
   top: 90px
   left: -100%
-  transition: 0.1s ease-in-out
+  transition: 0.2s ease-in-out
   font-weight: 700
   font-size: 72px
   color: #fff
   box-sizing: border-box
   padding-top: 30px
-  opacity: 0
 .full-screen-nav-link
   color: #333
   border: 1px solid rgba(1, 1, 1, 0.2)
@@ -156,10 +111,9 @@ export default {
   border-left: 0px
   width: 100%
   display: flex
-  justify-content: flex-start
-  align-items: center
+  padding: 4vw 4vw
   box-sizing: border-box
-  font-size: 3.5vh
+  font-size: 22px
   text-decoration: none
   &:first-child
     border-top: 1px rgba(1, 1, 1, 0.2) solid
@@ -169,22 +123,21 @@ export default {
 .fullnone
   left: 0
   display: none
-  opacity: 1
 .redirect
   display: none
 .nav-bar
-  width: 94%
-  padding: 15px 3%
+  z-index: 1000
   position: fixed
   top: 0px
-  display: grid
-  grid-template-columns: 200px calc(100% - 58% - 200px) 53%
+  width: 94%
+  padding: 15px 3%
   background: $front-white
   background: linear-gradient(to bottom, $back-white, $front-white)
+  display: grid
+  grid-template-columns: 200px calc(100% - 58% - 200px) 53%
   -webkit-box-shadow: 0px 0px 53px 0px rgba(0,0,0,0.03)
   -moz-box-shadow: 0px 0px 53px 0px rgba(0,0,0,0.03)
   box-shadow: 0px 0px 53px 0px rgba(0,0,0,0.03)
-  z-index: 1000
   .label
     display: flex
     text-decoration: none
@@ -205,17 +158,17 @@ export default {
       align-self: center
       display: flex
     span
-      margin-left: 5px
-      font-size: 12px
-      line-height: 21px
+      transition: 0.3s
+      font-size: 11px
+      line-height: 20px
       font-weight: 500
       color: $main-grey
+      margin-left: 5px
       align-self: center
       display: flex
       justify-content: flex-start
       text-align: left
       letter-spacing: 1px
-      transition: 0.3s ease
   .lang
     display: flex
     align-self: center
@@ -285,6 +238,8 @@ export default {
         margin: 0px!important
 @media screen and (max-width: $large)
     .nav-bar
+      width: 94%
+      padding: 15px 3%
       display: grid
       grid-template-columns: 200px calc(100% - 58% - 220px) 56%
       .label
@@ -303,21 +258,13 @@ export default {
           line-height: 19px
 @media screen and (max-width: $medium)
   .full-screen
-    top: 80px
-    z-index: 10
-    padding-top: 0px
-    height: calc( 100vh - 80px )
-  .full-screen-nav-link
-    padding-left: 5%
-    height: calc( 100% / 6 )
+    top: 75px
   .fullnone
     display: block
   .nav-bar
-    width: 90%
-    padding: 10px 5%
-    height: 60px
+    width: 92%
+    padding: 10px 4%
     grid-template-columns: calc( 100% - 115px ) 60px 55px
-    z-index: 100
     .label
       display: flex
       top: 0
@@ -348,7 +295,7 @@ export default {
         cursor: pointer
 @media screen and (max-width: $tablet)
   .full-screen
-    top: 80px
+    top: 75px
     color: #fff
   .nav-bar
     z-index: 1000
@@ -371,12 +318,11 @@ export default {
         display: flex
         align-items: center
         align-self: center
-        height: 45px
+        height: 47px
         transition: 0.3s
       span
         transition: 0.3s
-        font-size: 9px
-        line-height: 16px
+        font-size: 10px
         margin-left: 6px
         align-self: center
     .menu-icon-container
@@ -393,16 +339,12 @@ export default {
         position: relative
         cursor: pointer
 @media screen and (max-width: $mobile)
-  .full-screen
-    top: 60px
-    height: calc( 100vh - 60px )
   .nav-bar
     z-index: 1000
     position: fixed
     top: 0px
     width: 92%
     padding: 10px 4%
-    height: 40px
     .label
       display: flex
       text-decoration: none
@@ -415,24 +357,23 @@ export default {
         display: flex
         align-items: center
         align-self: center
-        height: 40px
+        height: 39px
         transition: 0.3s
       span
         transition: 0.3s
-        font-size: 8px
-        line-height: 15px
+        font-size: 9px
+        line-height: 16px
         margin-left: 4px
         align-self: center
         text-transform: none
-        letter-spacing: 0.7px
     .menu-icon-container
       display: flex
-      justify-content: center
+      justify-content: flex-end
       align-items: center
       .menu-icon
         background: #ff3333
-        height: 40px
-        width: 40px
+        height: 45px
+        width: 45px
         &:hover span
           height: 2px
           width: 27px !important
@@ -440,20 +381,53 @@ export default {
         span
           transition: 0.1s ease
           position: relative
-          height: 3px
-          width: 22px
-          margin: 2px 0px
+          height: 2px
+          width: 25px
+          margin: 3px 0px
           background-color: #fff
 @media screen and (max-width: 370px)
   .full-screen
-    top: 65px
+    top: 75px
   .nav-bar
     z-index: 1000
     position: fixed
     top: 0px
     width: 92%
-    padding: 5px 4%
-    height: 55px
+    padding: 10px 4%
+    .label
+      display: flex
+      text-decoration: none
+      position: relative
+      top: 0
+      transition: 0.1s ease-in-out
+      &:hover
+        opacity: 0.8
+      img
+        display: flex
+        align-items: center
+        align-self: center
+        height: 37px
+        transition: 0.3s
+      span
+        transition: 0.3s
+        font-size: 9px
+        line-height: 15px
+        margin-left: 4px
+        align-self: center
+        text-transform: none
+    .lang
+      display: flex
+      align-self: center
+      justify-content: center
+@media screen and (max-width: 295px)
+  .full-screen
+    top: 75px
+  .nav-bar
+    z-index: 1000
+    position: fixed
+    top: 0px
+    width: 92%
+    padding: 10px 4%
     .label
       display: flex
       text-decoration: none
@@ -470,46 +444,10 @@ export default {
         transition: 0.3s
       span
         transition: 0.3s
-        font-size: 7px
-        line-height: 14px
-        margin-left: 4px
-        align-self: center
-        text-transform: none
-    .lang
-      display: flex
-      align-self: center
-      justify-content: center
-@media screen and (max-width: 295px)
-  .full-screen
-    top: 50px
-    height: calc( 100vh - 50px )
-  .nav-bar
-    z-index: 1000
-    position: fixed
-    top: 0px
-    width: 92%
-    padding: 5px 4%
-    height: 40px
-    .label
-      display: flex
-      text-decoration: none
-      position: relative
-      top: 0
-      transition: 0.1s ease-in-out
-      &:hover
-        opacity: 0.8
-      img
-        display: flex
-        align-items: center
-        align-self: center
-        height: 33px
-        transition: 0.3s
-      span
-        transition: 0.3s
-        font-size: 7px
+        font-size: 9px
         letter-spacing: 0.3px
         margin-left: 3px
-        line-height: 13px
+        line-height: 14px
     .lang
       display: flex
       align-self: center
@@ -520,6 +458,7 @@ export default {
     position: fixed
     top: 0px
     width: 94%
+    padding: 7px 3%
     .label
       display: flex
       img

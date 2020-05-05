@@ -97,9 +97,8 @@ export default {
     },
     openNav() {
       this.navOpen = !this.navOpen
-      this.headerLimitPosition = undefined
       if (this.navOpen) {
-        console.log(this.headerLimitPosition)
+        this.headerLimitPosition = undefined
       } else {
         this.headerLimitPosition = 100
       }

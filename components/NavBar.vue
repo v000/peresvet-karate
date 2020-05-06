@@ -78,6 +78,7 @@ export default {
   watch: {
     $route() {
       this.navOpen = false
+      this.headerLimitPosition = 70
     }
   },
   created() {

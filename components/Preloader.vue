@@ -22,6 +22,7 @@ export default {}
     justify-content: center
     align-items: center
     display: none
+    box-sizing: border-box
     .preloader-img
       background-image: url('~assets/images/preloader.jpg')
       background-color: #ff3333
@@ -32,4 +33,5 @@ export default {}
       width: 600px
       display: block
       align-self: center
+      
 </style>

@@ -33,5 +33,4 @@ export default {}
       width: 600px
       display: block
       align-self: center
-      
 </style>

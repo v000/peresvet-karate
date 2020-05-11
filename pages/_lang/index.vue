@@ -3,9 +3,7 @@
     <div class="wrapper container">
       <div class="wrapper-action">
         <h1 class="title">
-          <i18n path="home.wrapper.heading">
-            <br place="break" />
-          </i18n>
+          <i18n path="home.wrapper.heading"></i18n>
         </h1>
         <span class="wrapper-action-eyebrow subtitle">
           {{ $t('home.wrapper.paragraph') }}
@@ -73,6 +71,7 @@ export default {
     flex-direction: column
     justify-content: center
     padding-right: 40px
+    padding-left: 10px
     .wrapper-action-eyebrow
       margin-bottom: 40px
       margin-top: 20px
@@ -104,7 +103,7 @@ export default {
       display: flex
       flex-direction: column
       justify-content: center
-      padding: 15px 60px 15px 15px
+      padding: 15px 60px 15px 20px
       h1
         margin: 0px
       .wrapper-action-eyebrow
@@ -133,7 +132,7 @@ export default {
     grid-template-columns: 100%
     .wrapper-action
       width: auto
-      padding: 10px 12vw 30px 8vw
+      padding: 10px 12vw 25px 55px
       margin-top: 0px
       margin-bottom: 15px
 @media screen and (max-width: $mobile)
@@ -144,7 +143,7 @@ export default {
     .wrapper-action
       padding: 15px
       margin-bottom: 15px
-      padding: 35px 12vw 20px 45px
+      padding: 70px 35px 70px 35px
       .wrapper-action-eyebrow
         margin-bottom: 25px
         margin-top: 15px
@@ -164,7 +163,7 @@ export default {
     grid-template-columns: 100%
     padding: 5px 0px
     .wrapper-action
-      padding: 20px 30px
+      padding: 60px 30px
       margin-bottom: 15px
       .wrapper-action-eyebrow
         margin-bottom: 30px

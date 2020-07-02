@@ -1,27 +1,35 @@
 <template>
   <div class="card">
-    <div class="card-pic">
+    <div
+      class="card-pic"
+      :style="{ 'background-image': 'url(' + instructor.picture + ')' }"
+    >
       <div class="card-description">
-        <h2>Корнєєв Вадим Олександрович</h2>
-        <div class="cadr-action">
-          <p>4 дан</p>
-          <a href="">тренування -></a>
-        </div>
+        <h2>{{ instructor.name }}</h2>
       </div>
     </div>
-    <div class="card-description"></div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    instructor: {
+      type: Object,
+      required: true
+    }
+  }
+}
 </script>
 
 <style lang="sass" scoped>
 @import "~/assets/sass/_breakpoints.sass"
 .card
-  display: flex
-  flex-direction: column
+  position: relative
+  bottom: 0px
+  width: 100%
+  height: 30vw
+  width: 100%
 .card-pic
     height: 30vw
     width: 100%
@@ -36,13 +44,7 @@ export default {}
       position: absolute
       width: 100%
       height: 100%
-      background: linear-gradient(to top,rgba(0,0,0,.9), rgba(255,0,0,0) 70.71%)
-    h2
-      color: #fff
-      display: flex
-      align-self: flex-end
-      flex-direction: columns
-      z-index: 100
+      background: linear-gradient(to top,rgba(0,0,0,1) 0%, rgba(0,0,0,0.1 ) 35%, rgba(0,0,0,0) 55%)
 .card-description
     padding: 10px 25px
     color: #101010
@@ -52,6 +54,11 @@ export default {}
     h2
       font-size: 22px
       margin: 0px
+      color: #fff
+      display: flex
+      align-self: flex-start
+      flex-direction: columns
+      z-index: 100
     p
       font-size: 17px
       opacity: 0.8

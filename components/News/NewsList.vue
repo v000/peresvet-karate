@@ -26,11 +26,12 @@ export default {
 <style lang="sass" scoped>
 @import "~/assets/sass/_breakpoints.sass"
 .news-list
-    margin-top: 120px
+    margin-top: 25vh
+    margin-bottom: 20vh
     width: calc( 80% - 60px )
     margin-left: 10%
     display: grid
-    grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3)
+    grid-template-columns: 50% 50%
     grid-gap: 30px
 @media screen and (max-width: $large)
   .news-list

@@ -50,8 +50,8 @@ export default {}
   height: auto
   margin-left: 5%
   display: flex
-  margin-top: 120px
-  margin-bottom: 80px
+  margin-top: 25vh
+  margin-bottom: 30vh
 .video-banner
   width: 40vw
   height: 26vw

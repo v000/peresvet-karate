@@ -8,7 +8,6 @@
         <div class="swiper-slide slide3"></div>
         <div class="swiper-slide slide4"></div>
       </div>
-      <div class="swiper-pagination"></div>
     </div>
     <div class="swiper_buttons">
       <div class="swiper-button-prev-unique">
@@ -42,6 +41,7 @@
         </svg>
       </div>
     </div>
+    <div class="swiper-pagination"></div>
   </div>
 </template>
 
@@ -78,6 +78,7 @@ export default {
 </script>
 <style lang="sass" scoped>
 @import "~/assets/sass/_breakpoints.sass"
+@import "~/assets/sass/_color.sass"
 .slide
   background-image: url('~assets/images/wrapper-slider/slide.jpg')
   background-size: cover
@@ -106,7 +107,7 @@ export default {
 .swiper-container
   position: relative
   height: 100%
-  width: calc( 100% - 60px )
+  width: 100%
   z-index: 0
   float: left
 .swiper-wrapper
@@ -119,16 +120,16 @@ export default {
   align-self: center
   position: absolute
   justify-content: space-between
-  height: 44px
-  width: auto
-  top: calc(50% - 30px)
-  right: 16px
+  height: 40px
+  width: 80px
+  left: calc(100% + 34px)
+  top: 20px
+  right: 0
 .swiper-button-prev-unique
-  width:  44px
-  height: 44px
+  width:  40px
+  height: 40px
   color: #fff
-  background-color: rgba(1,1,1,0.5)
-  border: 0px solid #fff
+  background-color: $front-black
   cursor: pointer
   transition: 0.2s ease-out
   display: flex
@@ -137,30 +138,47 @@ export default {
   position: relative
   box-sizing: border-box
   &:hover
-    border: 0
+    background: #5e5e5e
   &:focus
     outline: 0px
   svg
     fill: #fff
     transform: rotate(-90deg)
-    height: 25px
-    opacity: 0.8
+    height: 14px
+    opacity: 1
+.swiper-pagination
+  position: absolute
+  top: 20px
+  left: 133%
+  width: 30%
+  height: 30px
+  margin-top: 5px
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  align-items: center
 .swiper-pagination ::v-deep
   .swiper-pagination-bullet
+    white-space: nowrap
     opacity: 0.7
-    height: 3px
-    width: 25px
-    border-radius: 15px
-    margin: 0px 7px
+    height: 5px
+    width: 5px
+    border-radius: 100px
     background: rgba(115, 115, 115, 0.6 )
     transition: 0.3s ease
+    &:focus
+    outline: 0px
   .swiper-pagination-bullet-active
     background-color: white
+    height: 5px
+    width: 5px
+    &:focus
+    outline: 0px
 .swiper-button-next-unique
-  width: 44px
-  height: 44px
+  width: 40px
+  height: 40px
   color: #fff
-  background-color: #ff3333
+  background-color: $front-black
   cursor: pointer
   transition: 0.2s ease-out
   display: flex
@@ -171,91 +189,75 @@ export default {
   left: 0px
   &:focus
     outline: 0px
+  &:hover
+    background: #5e5e5e
   svg
     fill: #fff
     transform: rotate(90deg)
-    height: 25px
-    opacity: 0.9
-
+    height: 14px
+    opacity: 1
+@media screen and (min-width: 2000px)
+  .slider
+    height: 500px
 @media screen and (max-width: $large)
   .slider
-    height: 29vw
-  .swiper-button-next-unique
-    width: 45px
-    height: 45px
-    svg
-      height: 25px
-  .swiper-button-prev-unique
-    width: 45px
-    height: 45px
-    svg
-      height: 25px
-  .swiper_buttons
-    right: 15px
-@media screen and (max-width: $medium)
-  .slider
-    height: 37vw
+    height: 27vw
   .swiper-container
     position: relative
-    left: 45px
-    width: calc(100% - 90px)
-    z-index: 2
-  .swiper_buttons
-    z-index: 1
-    display: flex
-    align-self: center
-    justify-content: space-between
-    position: absolute
-    height: 60px
+    height: 100%
     width: 100%
-    top: 50%
-    right: 0px
-  .swiper-button-prev-unique
-    color: #fff
-    background-color: rgba(1,1,1,0.5)
-    border: 0px solid #fff
-    transition: 0.2s
-    &:active
-      color: #fff
-      background-color: #ff3333
-  .swiper-button-next-unique
-    color: #fff
-    background-color: rgba(1,1,1,0.5)
-    border: 0px solid #fff
-    transition: 0.2s
-    &:active
-      color: #fff
-      background-color: #ff3333
+  .swiper_buttons
+    top: 20px
+    right: 15px
+    left: calc(100% + 24px)
+  .swiper-pagination
+    position: absolute
+    top: 20px
+    left: calc(100% + 15vw + 10px)
+  .swiper-pagination ::v-deep
+    .swiper-pagination-bullet
+      white-space: nowrap
+      opacity: 0.7
+      height: 4px
+      width: 4px
+@media screen and (max-width: $medium)
+  .slider
+    height: 45vw
+  .swiper-container
+    position: relative
+    width: 100%
+    z-index: 2
+  .swiper-pagination
+    display: none
+  .swiper_buttons
+    display: none
 @media screen and (max-width: $tablet)
   .slider
-    height: 60vw
+    height: 50vw
   .swiper-container
     position: relative
     left: 0px
-    height: 60vw
+    height: 50vw
     width: 100%
   .swiper_buttons
     display: none
 @media screen and (max-width: $mobile)
   .slider
-    height: 60vw
+    height: 57vw
   .swiper-container
     position: relative
     left: 0px
-    min-height: 30vw
-    height: 60vw
+    height: 57vw
     width: 100%
   .swiper_buttons
     display: none
-@media screen and (max-width: 295px)
+@media screen and (max-width: 375px)
     .slider
-      min-height: 150px
-      height: 30vw
+      height: 55vw
     .swiper-container
       position: relative
       left: 0px
-      min-height: 150px
-      height: 30vw
+      height: 55vw
       width: 100%
     .swiper_buttons
       display: none

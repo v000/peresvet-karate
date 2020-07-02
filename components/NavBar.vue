@@ -1,4 +1,3 @@
-/* eslint-disable nuxt/no-globals-in-created */
 <template>
   <div
     :class="{ 'header--unpinned': scrolled }"
@@ -21,18 +20,56 @@
       </select>
     </div>
     <nav>
-      <nuxt-link to="/calendar" class="nav-link menu-link-type"
-        >Календар</nuxt-link
-      >
-      <nuxt-link to="/news" class="nav-link menu-link-type">Новини</nuxt-link>
-      <nuxt-link to="/video" class="nav-link menu-link-type">Відео</nuxt-link>
-      <nuxt-link to="/articles" class="nav-link menu-link-type"
-        >Статті</nuxt-link
-      >
-      <nuxt-link to="/instructors" class="nav-link menu-link-type"
-        >Інструктори</nuxt-link
-      >
-      <nuxt-link to="/info" class="nav-link menu-link-type">Контакти</nuxt-link>
+      <div class="dropdown-link">
+        <nuxt-link to="/calendar" class="nav-link menu-link-type"
+          >Календар</nuxt-link
+        >
+      </div>
+      <div class="dropdown-link">
+        <nuxt-link to="/news" class="nav-link menu-link-type">Новини</nuxt-link>
+      </div>
+      <div class="dropdown-link">
+        <nuxt-link to="/articles" class="nav-link menu-link-type"
+          >Статті</nuxt-link
+        >
+      </div>
+      <div class="dropdown-link">
+        <nuxt-link to="/video" class="nav-link menu-link-type">
+          Відео
+        </nuxt-link>
+        <div class="dropdown-content">
+          <a href="#">Ката</a>
+          <a href="#">Кращі виступи</a>
+          <a href="#">Семінари</a>
+          <a href="#">Для початківців</a>
+        </div>
+      </div>
+      <div class="dropdown-link">
+        <nuxt-link to="/instructors" class="nav-link menu-link-type">
+          Інстуктори
+        </nuxt-link>
+        <div class="dropdown-content">
+          <a href="#">Пуча Володимир Іванович</a>
+          <a href="#">Корнеев Вадим Олександрович</a>
+          <a href="#">Владюк Олександр Дмитрович</a>
+        </div>
+      </div>
+      <div class="dropdown-link">
+        <nuxt-link to="/info" class="nav-link menu-link-type">
+          Программа
+        </nuxt-link>
+        <div class="dropdown-content">
+          <a href="#">9 кью</a>
+          <a href="#">8 кью</a>
+          <a href="#">7 кью</a>
+          <a href="#">6 кью</a>
+          <a href="#">5 кью</a>
+          <a href="#">4 кью</a>
+          <a href="#">3 кью</a>
+          <a href="#">2 кью</a>
+          <a href="#">1 кью</a>
+        </div>
+      </div>
     </nav>
     <div class="menu-icon-container">
       <div class="menu-icon" title="Открыть меню" @click="openNav()">
@@ -48,17 +85,17 @@
       <nuxt-link class="full-screen-nav-link" to="/news">
         Новини
       </nuxt-link>
-      <nuxt-link class="full-screen-nav-link" to="/video">
-        Відео
-      </nuxt-link>
       <nuxt-link class="full-screen-nav-link" to="/articles">
         Статті
+      </nuxt-link>
+      <nuxt-link class="full-screen-nav-link" to="/video">
+        Відео
       </nuxt-link>
       <nuxt-link class="full-screen-nav-link" to="/instructors">
         Інстуктори
       </nuxt-link>
       <nuxt-link class="full-screen-nav-link" to="/info">
-        Контакти
+        Программа
       </nuxt-link>
     </div>
   </div>
@@ -125,8 +162,138 @@ export default {
 @import "~/assets/sass/_fonts.sass"
 @import "~/assets/sass/_typography.sass"
 @import "~/assets/sass/_color.sass"
-.activenavlink
-  color: #ff3333 !important
+.nav-bar
+  height: 64px
+  width: 100%
+  padding: 0 3%
+  position: fixed
+  top: 0px
+  display: grid
+  grid-template-columns: 200px 50px calc(100% - 250px)
+  -webkit-box-shadow: 0px 0px 53px 0px rgba(0,0,0,0.03)
+  -moz-box-shadow: 0px 0px 53px 0px rgba(0,0,0,0.03)
+  box-shadow: 0px 0px 53px 0px rgba(0,0,0,0.03)
+  z-index: 1000
+  box-sizing: border-box
+  background: $front-black
+  .label
+    display: flex
+    text-decoration: none
+    position: relative
+    top: 0
+    transition: 0.3s ease-in-out
+    &:hover
+      opacity: 0.3
+      span
+        opacity: 0.4
+    &:active
+      opacity: 1
+      span
+        opacity: 1
+    img
+      height: 40px
+      transition: 0.3s
+      align-self: center
+      display: flex
+    span
+      opacity: 1
+      font-size: 8px
+      font-weight: 300
+      line-height: 16px
+      letter-spacing: 1px
+      color: #fff
+      margin-left: 4px
+      align-self: center
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      text-align: left
+      text-transform: uppercase
+      transition: 0.3s ease
+      height: 64px
+  .lang
+    display: flex
+    align-self: center
+    justify-content: flex-start
+    select
+      opacity: 0
+      border: 0px
+      color: #999
+      outline: none
+      font-weight: 500
+      transition: 0.3s ease
+      cursor: pointer
+      font-size: 16px
+      background-color: none
+      &:hover
+        opacity: 0.4
+      option
+        border: 0px
+        color: #888
+        outline: 0px
+        background-color: #333
+        color: #fff
+  nav
+    display: flex
+    text-align: center
+    align-self: center
+    justify-content: flex-end
+    height: 64px
+.nav-link
+  text-decoration: none
+  transition: 0.3s ease
+  padding: 0 35px
+  display: block
+  position: relative
+  width: 100%
+  height: 64px
+  box-sizing: border-box
+  display: flex
+  justify-content: center
+  align-items: center
+  .menu-icon-container
+    display: none
+    .menu-icon
+      display: none
+.dropdown-link
+  position: relative
+  height: 64px
+  .nav-link
+    opacity: 1
+    transition: 0s ease-in-out
+  &:hover
+    background: #ff3333
+    color: #fff
+    .nav-link
+      color: #fff
+      opacity: 1
+    .dropdown-content
+      display: flex
+.dropdown-content
+  display: none
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-start
+  position: absolute
+  top: 100%
+  width: auto
+  min-width: 100%
+  box-sizing: border-box
+  a
+    color: #101010
+    background: #161616
+    padding: 18px 55px 18px 35px
+    text-decoration: none
+    color: grey
+    font-size: 15px
+    font-weight: 400
+    text-align: left
+    white-space: nowrap
+    width: 100%
+    box-sizing: border-box
+    &:hover
+      background: #101010
+      color: #fff
 .pinned-bar
   will-change: transform
   transition: transform 250ms ease-in-out
@@ -139,14 +306,7 @@ export default {
   width: 100%
   height: 100%
   background: #fafafa
-  top: 90px
   left: -100%
-  transition: 0.1s ease-in-out
-  font-weight: 700
-  font-size: 72px
-  color: #fff
-  box-sizing: border-box
-  padding-top: 30px
   opacity: 0
 .full-screen-nav-link
   color: #333
@@ -172,363 +332,320 @@ export default {
   opacity: 1
 .redirect
   display: none
-.nav-bar
-  width: 94%
-  padding: 15px 3%
-  position: fixed
-  top: 0px
-  display: grid
-  grid-template-columns: 200px calc(100% - 58% - 200px) 53%
-  background: $front-white
-  background: linear-gradient(to bottom, $back-white, $front-white)
-  -webkit-box-shadow: 0px 0px 53px 0px rgba(0,0,0,0.03)
-  -moz-box-shadow: 0px 0px 53px 0px rgba(0,0,0,0.03)
-  box-shadow: 0px 0px 53px 0px rgba(0,0,0,0.03)
-  z-index: 1000
-  .label
-    display: flex
-    text-decoration: none
-    position: relative
-    top: 0
-    transition: 0.3s ease-in-out
-    &:hover
-      opacity: 0.7
+@media screen and (min-width: 2000px)
+  .nav-bar
+    height: 90px
+    padding: 0 12%
+    grid-template-columns: 225px 50px calc(100% - 275px)
+    .label
+      transition: 0s
+      img
+        height: 60px
       span
-        opacity: 0.4
-    &:active
-      opacity: 1
-      span
-        opacity: 1
-    img
-      height: 55px
-      transition: 0.3s
-      align-self: center
+        margin-left: calc( 1vw / 4 )
+        font-size: 12px
+        line-height: 25px
+        height: 90px
+    nav
       display: flex
-    span
-      margin-left: 5px
-      font-size: 12px
-      line-height: 21px
-      font-weight: 500
-      color: $main-grey
+      text-align: center
       align-self: center
-      display: flex
-      justify-content: flex-start
-      text-align: left
-      letter-spacing: 1px
-      transition: 0.3s ease
-  .lang
-    display: flex
-    align-self: center
-    justify-content: flex-start
-    select
-      border: 0px
-      color: #999
-      outline: none
-      font-weight: 500
-      transition: 0.3s ease
-      cursor: pointer
-      font-size: 16px
-      background-color: none
-      &:hover
-        opacity: 0.4
-      option
-        border: 0px
-        color: #888
-        outline: 0px
-        background-color: #333
-        color: #fff
-  nav
-    display: flex
-    text-align: center
-    align-self: center
-    justify-content: space-between
-    position: relative
-    top: -2px
+      justify-content: flex-end
+      height: 90px
   .nav-link
-    text-decoration: none
-    transition: 0.3s ease
-  .menu-icon-container
-    display: flex
-    justify-content: flex-end
-    .menu-icon
-      background: #ff3333
-      height: 55px
-      width: 55px
-      display: flex
-      flex-direction: column
-      justify-content: center
-      align-items: center
-      position: relative
-      cursor: pointer
+    padding: 0 45px
+    height: 90px
+    .menu-icon-container
       display: none
-      &:hover .menu-icon span
-        height: 4px
-        margin: 3px 0px
-        &:nth-child(2)
-          width: 30px
-      span
-        transition: 0.1s ease
-        position: relative
-        height: 3px
-        width: 30px
-        margin: 4px 0px
-        background-color: #fff
-      .Span1
-        transform: rotate(45deg)
-        position: absolute
-        margin: 0px!important
-      .Span2
-        opacity: 0
-      .Span3
-        transform: rotate(-45deg)
-        position: absolute
-        margin: 0px!important
-@media screen and (max-width: $large)
-    .nav-bar
-      display: grid
-      grid-template-columns: 200px calc(100% - 58% - 220px) 56%
-      .label
-        display: flex
-        &:hover
-          opacity: 0.6
-          span
-            opacity: 0.4
-        img
-          height: 50px
-          transition: 0.3s
-        span
-          margin-left: 5px
-          letter-spacing: 1px
-          font-size: 10px
-          line-height: 19px
+      .menu-icon
+        display: none
+  .dropdown-link
+    position: relative
+    height: 90px
+  .dropdown-content
+    display: none
+    a
+      padding: 22px 55px 22px 45px
+      text-decoration: none
+      color: grey
+      font-size: 18px
+      font-weight: 400
+      text-align: left
+      white-space: nowrap
+      width: 100%
+      box-sizing: border-box
+@media screen and (max-width: 1100px)
+  .nav-link
+    padding: 0 25px
 @media screen and (max-width: $medium)
   .full-screen
-    top: 80px
+    top: 60px
     z-index: 10
     padding-top: 0px
-    height: calc( 100vh - 80px )
+    height: calc( 100vh - 70px )
   .full-screen-nav-link
-    padding-left: 5%
+    padding-left: calc( 3% + 46px )
     height: calc( 100% / 6 )
+    background: $front-black
+    color: #ccc
   .fullnone
     display: block
   .nav-bar
-    width: 90%
-    padding: 10px 5%
+    width: 100%
+    padding: 0px 0px 0px 3%
     height: 60px
-    grid-template-columns: calc( 100% - 115px ) 60px 55px
+    grid-template-columns:  150px calc( 100% - 210px )  60px
     z-index: 100
+    box-sizing: border-box
     .label
       display: flex
       top: 0
+      display: flex
+      align-items: center
+      height: 60px
       &:hover
         opacity: 1
         span
           opacity: 1
       img
-        height: 50px
+        height: 40px
       span
-        font-size: 10px
-        line-height: 18px
-        margin-left: 5px
+        font-size: 7px
+        line-height: 15px
+        margin-left: 4px
+        height: 60px
     nav
       display: none
     .menu-icon-container
       display: flex
       justify-content: flex-end
+      align-items: center
+      height: 60px
       .menu-icon
         background: #ff3333
-        height: 55px
-        width: 55px
+        height: 60px
+        width: 80px
         display: flex
         flex-direction: column
         justify-content: center
         align-items: center
         position: relative
         cursor: pointer
+        &:hover .menu-icon span
+          height: 3px
+          margin: 3px 0px
+          &:nth-child(2)
+            width: 35px
+        span
+          transition: 0s
+          position: relative
+          height: 3px
+          width: 28px
+          margin: 3px 0px
+          background-color: #fff
+        .Span1
+          transform: rotate(45deg)
+          position: absolute
+          margin: 0px!important
+        .Span2
+          opacity: 0
+        .Span3
+          transform: rotate(-45deg)
+          position: absolute
+          margin: 0px!important
 @media screen and (max-width: $tablet)
   .full-screen
-    top: 80px
-    color: #fff
+    top: 60px
+    z-index: 10
+    padding-top: 0px
+    height: calc( 100vh - 70px )
+  .full-screen-nav-link
+    height: calc( 100% / 6 )
+  .fullnone
+    display: block
   .nav-bar
-    z-index: 1000
-    position: fixed
-    top: 0px
-    width: 92%
-    padding: 10px 4%
-    grid-template-columns: calc( 100% - 115px ) 60px 55px
-    .label
+    width: 100%
+    z-index: 100
+    box-sizing: border-box
+    .menu-icon-container
       display: flex
-      text-decoration: none
-      position: relative
-      top: 0
-      transition: 0.1s ease-in-out
+      justify-content: flex-end
+      align-items: center
+      height: 60px
+      .menu-icon
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        position: relative
+        cursor: pointer
+        &:hover .menu-icon span
+          height: 4px
+          margin: 3px 0px
+          &:nth-child(2)
+            width: 30px
+        span
+          transition: 0s
+          position: relative
+          height: 3px
+          width: 30px
+          margin: 4px 0px
+          background-color: #fff
+@media screen and (max-width: $mobile)
+  .full-screen
+    top: 52px
+    z-index: 10
+    padding-top: 0px
+    height: calc( 100vh - 52px )
+  .full-screen-nav-link
+    padding-left: calc( 3% + 40px )
+    height: calc( 100% / 6 )
+    font-size: 5vw
+  .fullnone
+    display: block
+  .nav-bar
+    width: 100%
+    padding: 0px 0px 0px 3%
+    height: 52px
+    grid-template-columns:  150px calc( 100% - 210px )  60px
+    z-index: 100
+    box-sizing: border-box
+    .label
+      height: 52px
       &:hover
         opacity: 1
         span
           opacity: 1
       img
-        display: flex
-        align-items: center
-        align-self: center
-        height: 45px
-        transition: 0.3s
+        height: 34px
       span
-        transition: 0.3s
-        font-size: 9px
-        line-height: 16px
-        margin-left: 6px
-        align-self: center
+        font-size: 6px
+        line-height: 13px
+        margin-left: 4px
+        height: 52px
+    nav
+      display: none
     .menu-icon-container
       display: flex
       justify-content: flex-end
+      align-items: center
+      height: 52px
       .menu-icon
         background: #ff3333
-        height: 55px
-        width: 55px
+        height: 52px
+        width: 80px
         display: flex
         flex-direction: column
         justify-content: center
         align-items: center
         position: relative
         cursor: pointer
-@media screen and (max-width: $mobile)
-  .full-screen
-    top: 60px
-    height: calc( 100vh - 60px )
-  .nav-bar
-    z-index: 1000
-    position: fixed
-    top: 0px
-    width: 92%
-    padding: 10px 4%
-    height: 40px
-    .label
-      display: flex
-      text-decoration: none
-      position: relative
-      top: 0
-      transition: 0.1s ease-in-out
-      &:hover
-        opacity: 1
-      img
-        display: flex
-        align-items: center
-        align-self: center
-        height: 40px
-        transition: 0.3s
-      span
-        transition: 0.3s
-        font-size: 8px
-        line-height: 15px
-        margin-left: 4px
-        align-self: center
-        text-transform: none
-        letter-spacing: 0.7px
-    .menu-icon-container
-      display: flex
-      justify-content: center
-      align-items: center
-      .menu-icon
-        background: #ff3333
-        height: 40px
-        width: 40px
-        &:hover span
-          height: 2px
-          width: 27px !important
+        &:hover .menu-icon span
+          height: 3px
           margin: 3px 0px
+          &:nth-child(2)
+            width: 35px
         span
-          transition: 0.1s ease
+          transition: 0s
           position: relative
           height: 3px
-          width: 22px
-          margin: 2px 0px
+          width: 28px
+          margin: 3px 0px
           background-color: #fff
-@media screen and (max-width: 370px)
-  .full-screen
-    top: 65px
+        .Span1
+          transform: rotate(45deg)
+          position: absolute
+          margin: 0px!important
+        .Span2
+          opacity: 0
+        .Span3
+          transform: rotate(-45deg)
+          position: absolute
+          margin: 0px!important
   .nav-bar
-    z-index: 1000
-    position: fixed
-    top: 0px
-    width: 92%
-    padding: 5px 4%
-    height: 55px
+    width: 100%
+    height: 52px
+    z-index: 100
     .label
       display: flex
-      text-decoration: none
-      position: relative
       top: 0
-      transition: 0.1s ease-in-out
-      &:hover
-        opacity: 0.8
-      img
-        display: flex
-        align-items: center
-        align-self: center
-        height: 35px
-        transition: 0.3s
-      span
-        transition: 0.3s
-        font-size: 7px
-        line-height: 14px
-        margin-left: 4px
-        align-self: center
-        text-transform: none
-    .lang
       display: flex
-      align-self: center
-      justify-content: center
-@media screen and (max-width: 295px)
+      align-items: center
+      &:hover
+        opacity: 1
+        span
+          opacity: 1
+    nav
+      display: none
+@media screen and (max-width: 375px)
   .full-screen
-    top: 50px
-    height: calc( 100vh - 50px )
+    top: 46px
+    z-index: 10
+    padding-top: 0px
+    height: calc( 100vh - 46px )
+  .full-screen-nav-link
+    padding-left: calc( 3% + 32px )
+    height: calc( 100% / 6 )
+    font-size: calc( 3vw + 5px )
+  .fullnone
+    display: block
   .nav-bar
-    z-index: 1000
-    position: fixed
-    top: 0px
-    width: 92%
-    padding: 5px 4%
-    height: 40px
+    width: 100%
+    padding: 0px 0px 0px 3%
+    height: 46px
+    grid-template-columns:  150px calc( 100% - 210px )  60px
+    z-index: 100
+    box-sizing: border-box
     .label
-      display: flex
-      text-decoration: none
-      position: relative
-      top: 0
-      transition: 0.1s ease-in-out
+      height: 46px
       &:hover
-        opacity: 0.8
+        opacity: 1
+        span
+          opacity: 1
       img
-        display: flex
-        align-items: center
-        align-self: center
-        height: 33px
-        transition: 0.3s
+        height: 28px
       span
-        transition: 0.3s
-        font-size: 7px
-        letter-spacing: 0.3px
+        font-size: 5px
+        line-height: 11px
         margin-left: 3px
-        line-height: 13px
-    .lang
+        height: 46px
+    nav
+      display: none
+    .menu-icon-container
       display: flex
-      align-self: center
       justify-content: flex-end
-@media screen and (max-width: 250px)
-  .nav-bar
-    z-index: 1000
-    position: fixed
-    top: 0px
-    width: 94%
-    .label
-      display: flex
-      img
-        height: 30px
-      span
-        transition: 0.3s
-        font-size: 7px
-        letter-spacing: 0.3px
-        line-height: 12px
-        margin-left: 3px
-        align-self: center
+      align-items: center
+      height: 46px
+      .menu-icon
+        background: #ff3333
+        height: 46px
+        width: 60px
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        position: relative
+        cursor: pointer
+        &:hover .menu-icon span
+          height: 2px
+          margin: 3px 0px
+          &:nth-child(2)
+            width: 35px
+        span
+          transition: 0s
+          position: relative
+          height: 3px
+          width: 28px
+          margin: 3px 0px
+          background-color: #fff
+        .Span1
+          transform: rotate(45deg)
+          position: absolute
+          margin: 0px!important
+        .Span2
+          opacity: 0
+        .Span3
+          transform: rotate(-45deg)
+          position: absolute
+          margin: 0px!important
 </style>

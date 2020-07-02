@@ -1,14 +1,23 @@
 <template>
   <div>
-    <Articles />
+    <HomeArticles :articles="articles" class="container" />
   </div>
 </template>
 
 <script>
-import Articles from '@/components/Articles/Articles.vue'
+import HomeArticles from '@/components/_HomePage/HomeArticles.vue'
 export default {
   components: {
-    Articles
+    HomeArticles
+  },
+  asyncData(context) {
+    return context.$axios
+      .get('https://peresvet-karate.firebaseio.com/articles.json')
+      .then((response) => {
+        return {
+          articles: response.data.reverse()
+        }
+      })
   }
 }
 </script>

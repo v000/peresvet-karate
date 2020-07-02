@@ -1,9 +1,23 @@
 <template>
-  <div>qwewqe</div>
+  <Instructors :instructors="instructors" />
 </template>
 
 <script>
-export default {}
+import Instructors from '@/components/Instructors/Instructors.vue'
+export default {
+  components: {
+    Instructors
+  },
+  asyncData(context) {
+    return context.$axios
+      .get('https://peresvet-karate.firebaseio.com/instructors.json')
+      .then((response) => {
+        return {
+          instructors: response.data
+        }
+      })
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

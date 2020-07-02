@@ -27,7 +27,7 @@ export default {
 <style lang="sass" scoped>
 @import "~/assets/sass/_breakpoints.sass"
 .calendar-list
-  margin-top: 200px
+  margin-top: 25vh
   padding: 0px 30%
 .card
   margin-bottom: 40px
@@ -44,7 +44,7 @@ export default {
 @media screen and (max-width: $mobile)
   .calendar-list
     margin-top: 60px
-    padding: 0px 5%
+    padding: 0px 7%
   .card
     margin-bottom: 20px
 </style>
